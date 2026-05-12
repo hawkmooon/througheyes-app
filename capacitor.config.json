@@ -1,0 +1,10 @@
+{
+  "appId": "com.eymen.througheyes",
+  "appName": "ThroughEyes",
+  "webDir": "dist",
+  "plugins": {
+    "Share": {
+      "androidScheme": "https"
+    }
+  }
+}
