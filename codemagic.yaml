@@ -1,0 +1,45 @@
+workflows:
+  ios-release:
+    name: ThroughEyes iOS Release
+    max_build_duration: 60
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.eymen.througheyes
+      vars:
+        XCODE_PROJECT: "ios/App/App.xcodeproj"
+        XCODE_SCHEME: "App"
+        BUNDLE_ID: "com.eymen.througheyes"
+        APP_STORE_APPLE_ID: "6768799534"
+    scripts:
+      - name: Install dependencies
+        script: npm install
+      - name: Build web assets
+        script: npm run build
+      - name: Sync Capacitor
+        script: npx cap sync ios --inline
+      - name: Set build number
+        script: |
+          BUILD_NUMBER=$(($BUILD_NUMBER))
+          agvtool new-version -all $BUILD_NUMBER
+        working_directory: ios/App
+      - name: Build iOS
+        script: |
+          xcode-project use-profiles
+          xcodebuild \
+            -project "$XCODE_PROJECT" \
+            -scheme "$XCODE_SCHEME" \
+            -configuration Release \
+            -archivePath build/App.xcarchive \
+            archive
+          xcodebuild \
+            -exportArchive \
+            -archivePath build/App.xcarchive \
+            -exportPath build/ios \
+            -exportOptionsPlist /Users/builder/export_options.plist
+    artifacts:
+      - build/ios/*.ipa
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
