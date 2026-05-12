@@ -8,11 +8,11 @@ workflows:
       ios_signing:
         distribution_type: app_store
         bundle_identifier: com.eymen.througheyes
+      xcode: latest
+      node: v22
       vars:
-        XCODE_PROJECT: "ios/App/App.xcodeproj"
-        XCODE_SCHEME: "App"
-        BUNDLE_ID: "com.eymen.througheyes"
-        APP_STORE_APPLE_ID: "6768799534"
+        XCODE_PROJECT: ios/App/App.xcodeproj
+        XCODE_SCHEME: App
     scripts:
       - name: Install dependencies
         script: npm install
