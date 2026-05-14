@@ -23,7 +23,6 @@
   .viewport{position:relative;flex:1;overflow:hidden;background:#000}
   video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0}
   #glCanvas{position:absolute;inset:0;width:100%;height:100%}
-  /* Freeze overlay */
   #freezeCanvas{position:absolute;inset:0;width:100%;height:100%;display:none;z-index:2}
   .info-overlay{position:absolute;top:10px;left:10px;right:10px;background:rgba(8,8,16,.92);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:12px;padding:12px 14px;display:none;z-index:5;max-height:50%;overflow-y:auto}
   .info-overlay.visible{display:block}
@@ -31,29 +30,46 @@
   .info-stats{font-size:10px;color:#7c6aff;margin-bottom:5px;letter-spacing:.3px}
   .info-desc{font-size:11px;color:#a0a0c0;line-height:1.7}
   .info-close{position:absolute;top:8px;right:10px;background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer}
-  .no-camera{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--muted);font-size:14px;text-align:center;padding:40px}
+  .no-camera{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--muted);font-size:14px;text-align:center;padding:40px;z-index:10}
   .no-camera .icon{font-size:3rem}
-  .no-camera button{margin-top:8px;padding:12px 28px;background:var(--accent);color:#fff;border:none;border-radius:50px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer}
+  .no-camera button{margin-top:8px;padding:12px 28px;background:var(--accent);color:#fff;border:none;border-radius:50px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;-webkit-appearance:none;appearance:none;touch-action:manipulation}
   .bottom-panel{background:rgba(8,8,16,.95);backdrop-filter:blur(20px);border-top:1px solid var(--border);padding:7px 0 12px;flex-shrink:0}
   .category-tabs{display:flex;gap:5px;padding:0 12px 6px;overflow-x:auto;scrollbar-width:none}
   .category-tabs::-webkit-scrollbar{display:none}
-  .cat-tab{padding:4px 10px;border-radius:50px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:inherit;font-size:10px;font-weight:500;cursor:pointer;white-space:nowrap;transition:all .2s}
+  .cat-tab{padding:4px 10px;border-radius:50px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:inherit;font-size:10px;font-weight:500;cursor:pointer;white-space:nowrap;transition:all .2s;-webkit-appearance:none;appearance:none;touch-action:manipulation}
   .cat-tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
   .animal-scroll{display:flex;gap:6px;padding:0 12px;overflow-x:auto;scrollbar-width:none}
   .animal-scroll::-webkit-scrollbar{display:none}
-  .animal-btn{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 4px;min-width:52px;border-radius:10px;border:1px solid var(--border);background:var(--surface);cursor:pointer;transition:all .2s;flex-shrink:0}
+  .animal-btn{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 4px;min-width:52px;border-radius:10px;border:1px solid var(--border);background:var(--surface);cursor:pointer;transition:all .2s;flex-shrink:0;-webkit-appearance:none;appearance:none;touch-action:manipulation}
   .animal-btn:active{transform:scale(.95)}
   .animal-btn.active{border-color:var(--accent);background:rgba(124,106,255,.15)}
   .animal-btn .emoji{font-size:1.2rem}
   .animal-btn .name{font-size:7px;color:var(--muted);font-weight:500;text-align:center;line-height:1.2}
   .animal-btn.active .name{color:var(--accent)}
   .action-row{display:flex;justify-content:center;gap:12px;padding:7px 10px 0}
-  .action-btn{display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;color:var(--muted);font-family:inherit;font-size:8px}
+  .action-btn{display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;color:var(--muted);font-family:inherit;font-size:8px;-webkit-appearance:none;appearance:none;touch-action:manipulation}
   .action-btn .icon{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:.95rem}
   .action-btn:active .icon{transform:scale(.9)}
   .action-btn.capture .icon{width:48px;height:48px;background:var(--accent);border-color:var(--accent);font-size:1.1rem}
   .toast{position:fixed;bottom:95px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(124,106,255,.92);color:#fff;padding:8px 18px;border-radius:50px;font-size:11px;font-weight:500;opacity:0;transition:all .3s;pointer-events:none;z-index:50;white-space:nowrap}
   .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  @media(min-width:768px){
+    .animal-btn{min-width:72px;padding:10px 8px}
+    .animal-btn .emoji{font-size:1.6rem}
+    .animal-btn .name{font-size:9px}
+    .cat-tab{padding:6px 14px;font-size:12px}
+    .action-btn .icon{width:48px;height:48px;font-size:1.1rem}
+    .action-btn.capture .icon{width:58px;height:58px;font-size:1.3rem}
+    .action-btn{font-size:10px}
+    .no-camera{font-size:18px;gap:16px}
+    .no-camera button{padding:16px 36px;font-size:17px}
+    .logo{font-size:1.2rem}
+    .current-vision{font-size:12px}
+    .info-overlay{padding:16px 18px;max-height:60%}
+    .info-animal-name{font-size:1.1rem}
+    .info-stats{font-size:12px}
+    .info-desc{font-size:13px}
+  }
 </style>
 </head>
 <body>
@@ -81,8 +97,8 @@
   </div>
   <div class="no-camera" id="noCameraMsg" style="display:none">
     <div class="icon">📷</div>
-    <div>Kamera erişimi gerekli</div>
-    <button onclick="startCamera()">Kamerayı Aç</button>
+    <div>Camera access is required</div>
+    <button onclick="startCamera()">Continue</button>
   </div>
 </div>
 
@@ -101,27 +117,18 @@
 
 <script>
 const A=[
-  // REFERANS
   {id:'human',name:'İnsan',emoji:'🧑',cat:'ref',stats:'Trikromat | 180° | 20/20',desc:'Normal insan görüşü — 3 renk reseptörü (kırmızı, yeşil, mavi). Merkezi görüş keskin, iyi derinlik algısı. 180° görüş alanı. İnsanlar renkleri en iyi algılayan canlılardan biridir ancak UV ve kızılötesi ışığı göremeyiz.',f:0},
-
-  // EVCİL
   {id:'dog',name:'Köpek',emoji:'🐕',cat:'pets',stats:'Dikromat mavi-sarı | 240° | 20/75',desc:'Köpekler dünyayı mavi ve sarı tonlarında görür — kırmızı ve yeşili ayırt edemezler. Görüş keskinlikleri insanın 1/3\'ü kadardır (20/75). Ancak hareket algıları insandan 10 kat daha iyidir. 240° geniş görüş alanı ve tapetum lucidum sayesinde gece görüşleri insandan çok daha iyidir. Yere yakın bakış açıları dünyayı alçak ve geniş gösterir.',f:1},
   {id:'cat',name:'Kedi',emoji:'🐈',cat:'pets',stats:'Dikromat mavi-yeşil | 200° | 20/150 | Gece: 6-8x',desc:'Kediler soluk, desatüre bir dünya görür — mavi-yeşil tonları baskındır. Uzaktaki nesneler bulanıktır (20/150). Ancak tapetum lucidum sayesinde gece görüşleri insandan 6-8 kat daha iyidir. 200° geniş görüş alanına sahiptirler. En ufak hareketi anında algılarlar — bir kağıdın kenarının kıpırdamasını bile fark ederler.',f:2},
-
-  // KUŞLAR
   {id:'eagle',name:'Kartal',emoji:'🦅',cat:'birds',stats:'Tetrakromat+UV | 340° | 20/4',desc:'Kartallar dünyayı insanların hayal edemeyeceği netlikte görür. Görme keskinlikleri insanın 4-5 katıdır (20/4). Derin fovea sayesinde merkez görüşleri teleskop gibi yakınlaştırır. 4 renk reseptörü + UV görüşü ile insanların göremediği desenleri algılarlar. 340° görüş alanı ile arkalarını bile neredeyse görebilirler. 3 km uzaktaki bir tavşanı tespit edebilirler.',f:3},
   {id:'owl',name:'Baykuş',emoji:'🦉',cat:'birds',stats:'Çubuk hücresi baskın | 110° | Aşırı gece görüşü',desc:'Baykuşlar gecenin hakimidir. Tüp şeklindeki gözleri hareket edemez bu yüzden başlarını 270° çevirebilirler. Retinalarındaki çubuk hücreleri sayesinde neredeyse tam karanlıkta bile görebilirler. Dünyaları yeşilimsi ve loş bir gece manzarası gibidir. Görüş alanları dar (110°) ama binoküler görüşleri mükemmeldir.',f:4},
   {id:'pigeon',name:'Güvercin',emoji:'🐦',cat:'birds',stats:'Tetrakromat+UV | 300° | ~20/30',desc:'Güvercinler UV\'yi ayrı bir 4. renk olarak görür. Renkli yağ damlacıkları renk algısını filtreler ve saflaştırır. Çiçekler ve tüyler üzerindeki UV desenleri onlar için tamamen farklı bir dünya yaratır. 300° geniş görüş alanına sahiptirler.',f:5},
   {id:'flamingo',name:'Flamingo',emoji:'🦩',cat:'birds',stats:'Tetrakromat+UV | 300° | ~0.8',desc:'Flamingolar UV ışığında tüylerinin pembe rengini çok daha parlak ve karmaşık desenlerle görür. Bu desenler çiftleşme seçiminde kritik rol oynar. Su altında dalış yaparken lens şekillerini değiştirerek görüşlerini ayarlayabilirler.',f:53},
-
-  // BÖCEKLER
   {id:'bee',name:'Arı',emoji:'🐝',cat:'insects',stats:'Trikromat UV-mavi-yeşil | 280° | Polarizasyon',desc:'Arılar kırmızı rengi göremez — onlar için görünmezdir. Ancak UV ışığını görürler ve çiçekler üzerindeki UV desenleri onlar için iniş pisti görevi görür. Bileşik gözleri binlerce küçük lensden oluşur ve altıgen mozaik görüntü yaratır. Bulutlu günlerde bile polarize ışık sayesinde güneşin yerini belirleyebilirler.',f:6},
   {id:'butterfly',name:'Kelebek',emoji:'🦋',cat:'insects',stats:'6 fotoreseptör | 300° | UV desenleri',desc:'Kelebekler 6 farklı fotoreseptör tipine sahiptir — insandan iki kat fazla. UV görüşleri kanat desenlerini ve çiçek rehberlerini ortaya çıkarır. Beyaz nesneler UV altında insanın göremediği canlı desenlerle kaplanır. Böcek dünyasının en renkli görüşüne sahiptirler.',f:7},
   {id:'firefly',name:'Ateş Böceği',emoji:'✨',cat:'insects',stats:'Biyolüminesans uyumlu | Karanlık adapteli',desc:'Ateş böceklerinin gözleri karanlıkta biyolüminesans flaşları algılamak için evrimleşmiştir. Dünyaları neredeyse tamamen karanlıktır — sadece parlayan objeler ve ışık kaynakları görünür. Bu sayede eşlerinin ışık sinyallerini uzaktan tespit edebilirler.',f:8},
   {id:'fly',name:'Sinek',emoji:'🪰',cat:'insects',stats:'Trikromat UV | 360° | 250Hz',desc:'Sineklerin bileşik gözleri 250Hz titreşim füzyonuna sahiptir — insanın 5 katı hız. Bu yüzden dünya onlar için ağır çekim gibidir. El sallayarak sineği vurmaya çalıştığınızda o sizi yavaş çekimde görür. 360° tam çevre görüşü ile her yönü aynı anda görebilirler.',f:9},
   {id:'spider',name:'Sıçrayan Örümcek',emoji:'🕷️',cat:'insects',stats:'Trikromat | 360° (8 göz) | Merkezde keskin',desc:'8 göze sahiptir: 2 büyük ön göz inanılmaz keskinlikte görürken, 6 çevresel göz geniş alan tespiti yapar. Ön gözleri bağımsız olarak dönerek hedefi takip edebilir. Küçük bedenlerine rağmen hayvan aleminin en gelişmiş görüş sistemlerinden birine sahiptirler.',f:10},
-
-  // DENİZ
   {id:'shark',name:'Köpekbalığı',emoji:'🦈',cat:'sea',stats:'Monokromat | Yüksek kontrast hassasiyeti',desc:'Köpekbalıkları pratik olarak renk körüdür — dünyayı mavi-yeşil tek renk tonunda görürler. Ancak kontrast hassasiyetleri aşırı yüksektir. Su altındaki en ufak hareket ve gölge farkını algılarlar. Bulanık suda bile avlarının siluetini tespit edebilirler.',f:11},
   {id:'mantis',name:'Mantis Karidesi',emoji:'🦐',cat:'sea',stats:'12-16 reseptör | 360° | Dairesel polarizasyon',desc:'Dünyadaki en karmaşık görsel sisteme sahip canlı. 16 farklı fotoreseptörü ile insanın hayal bile edemeyeceği renkleri algılar. Dairesel polarize ışığı görebilen tek hayvandır. Sap gözleri bağımsız 360° hareket eder. Renk algısı insan anlayışının çok ötesindedir.',f:12},
   {id:'deepsea',name:'Derin Deniz Balığı',emoji:'🐠',cat:'sea',stats:'Monokromat | Tam karanlık adapteli',desc:'Okyanusun dibinde güneş ışığı ulaşamaz. Bu balıklar sadece diğer canlıların biyolüminesans ışığını görebilir — siyan-mavi parlayan noktalar. Geri kalan her şey zifiri karanlıktır. Kendi vücutlarındaki ışık organlarıyla iletişim kurarlar.',f:13},
@@ -129,14 +136,10 @@ const A=[
   {id:'whale',name:'Mavi Balina',emoji:'🐋',cat:'sea',stats:'Monokromat | 160° | 20/240',desc:'Dünyanın en büyük canlısı tamamen renk körüdür — tek tip koni hücresi vardır. Görme keskinliği çok düşüktür (20/240). Okyanusta bulanık, gri tonlamalı, dalgalanan bir dünya görür. Görme yerine ekolokasyona güvenir.',f:15},
   {id:'zebrafish',name:'Zebra Balığı',emoji:'🐟',cat:'sea',stats:'Tetrakromat+UV | 160° | 20/2000',desc:'4 koni tipi + UV görüşüne sahiptir. Ancak görme keskinliği aşırı düşüktür — insanın 100 katı kötü. UV ışığını kullanarak zooplanktonları tespit eder çünkü bu küçük canlılar UV altında parlar.',f:16},
   {id:'dolphin',name:'Yunus',emoji:'🐬',cat:'sea',stats:'Monokromat | 360° | Ekolokasyon',desc:'Yunuslar renk göremez — tek tip koni hücresiyle siyah-beyaz dünya algılar. Su altında gözlerinin şeklini değiştirerek odaklama yapar. Görmenin yetersiz kaldığı yerde sonar kullanır — ses dalgalarının yansımasını zihinsel görüntüye çevirir.',f:54},
-
-  // SÜRÜNGENLER
   {id:'snake',name:'Yılan (Termal)',emoji:'🐍',cat:'reptiles',stats:'Dikromat+Kızılötesi | 200° | Termal görüş',desc:'Çukur organları kızılötesi (infrared) ışını algılar — sıcakkanlı canlıları vücut ısılarından "görür". Soğuk nesneler koyu mavi, sıcak nesneler turuncu-beyaz parlar. Tam karanlıkta bile bir fareyi 1 metreden tespit edebilir. Normal görüşlerinin üzerine termal katman bindirirler.',f:17},
   {id:'snake_day',name:'Yılan (Gündüz)',emoji:'🟡',cat:'reptiles',stats:'Dikromat mavi-yeşil | 200° | Kırmızı yok',desc:'Gündüz aktif yılanların görüşü dikromatiktir — kırmızıyı göremezler. Dünya soluk mavi-yeşil tonlarında, düşük keskinlikte görünür. Geniş alan görüşüne sahiptirler ancak detay algıları zayıftır.',f:18},
   {id:'croc',name:'Timsah',emoji:'🐊',cat:'reptiles',stats:'Tetrakromat | 200° | Yarık gözbebek',desc:'Yarık gözbebekleri dramatik bir sinematik letterbox görünüm yaratır. Yüksek kontrast, yeşil tonlu panoramik görüş. Su seviyesinden bakar. Tapetum lucidum sayesinde gece görüşü güçlüdür. Karanlıkta gözleri kırmızı parlar.',f:19},
   {id:'chameleon',name:'Bukalemun',emoji:'🦎',cat:'reptiles',stats:'Tetrakromat+UV | 360° | Bağımsız gözler',desc:'Her bir gözü bağımsız hareket eder — aynı anda iki farklı yöne bakabilir! Beyin iki ayrı görsel akışı aynı anda işler. UV tetrakromat görüşe sahiptir. Avını tespit ettiğinde her iki göz de hedefe kilitlenir.',f:20},
-
-  // MEMELİLER
   {id:'horse',name:'At',emoji:'🐴',cat:'mammals',stats:'Dikromat | 350° | ~20/33',desc:'Atlar neredeyse 360° görüş alanına sahiptir — sadece tam önlerinde ve arkalarında küçük kör noktaları vardır. Ancak sadece %20\'si binokülerdir bu yüzden derinlik algıları zayıftır. Mavi-sarı dikromat olarak kırmızı ve yeşili ayırt edemezler. Dünya onlar için geniş, panoramik ve soluk renklidir.',f:21},
   {id:'bat',name:'Yarasa',emoji:'🦇',cat:'mammals',stats:'Neredeyse kör | UV | Ekolokasyon',desc:'Yarasalar gündüz neredeyse göremez. Bazı türlerde UV görüşü vardır. Karanlıkta tamamen ekolokasyona güvenirler — ses dalgalarının yansımasıyla çevrelerinin 3D haritasını çıkarırlar. Sonar yankısı şekilleri kenar çizgileri olarak ortaya koyar.',f:22},
   {id:'mole',name:'Köstebek',emoji:'🐀',cat:'mammals',stats:'Sadece aydınlık-karanlık | ~20/600',desc:'Köstebekler neredeyse tamamen kördür — sadece ışık ile karanlığı ayırt edebilir. Dünya onlar için sadece kenar çizgilerinden oluşan bulanık bir haritadır. Tamamen dokunma, koku ve titreşim duyularına güvenirler.',f:23},
@@ -145,83 +148,59 @@ const A=[
   {id:'elephant',name:'Fil',emoji:'🐘',cat:'mammals',stats:'Dikromat mavi-sarı | 280° | ~0.6',desc:'Filler dikromat olup kırmızı ve yeşili ayırt edemez. Gözleri başın iki yanında olduğu için ~280° geniş alan görüşüne sahiptir ancak binoküler alanları çok dardır (~25°). Genç filleri yırtıcılardan korumak için çevreyi sürekli taramaları hayati önem taşır.',f:57},
   {id:'giraffe',name:'Zürafa',emoji:'🦒',cat:'mammals',stats:'Dikromat | 330° | Yukarıdan bakış',desc:'Dünyanın en uzun kara hayvanı 5-6 metre yükseklikten bakar. 330° panoramik görüş alanı ile sırtının arkasını bile neredeyse görebilir. Dikromat görüşle soluk renkler algılar. Uzaktaki bir aslanın çimende yürüyüşünü çok erken fark edebilir.',f:58},
   {id:'chimp',name:'Şempanze',emoji:'🦍',cat:'mammals',stats:'Trikromat | 180° | ~20/20',desc:'İnsan görüşüne en yakın canlı — aynı 3 renk reseptörüne sahiptir. Genetik olarak %98.8 benzeriz. Ancak yüz ifadelerini okumada insanlardan daha hızlıdırlar. Topluluk hiyerarşisini görsel ipuçlarından anlayabilirler.',f:59},
-
-  // GÖZ HASTALIKLARI
-  {id:'cataract_e',name:'Katarakt (Erken)',emoji:'🌤️',cat:'eye',stats:'20/30-20/50 | Sararmış | Gece halo',desc:'Göz merceği bulanıklaşmaya başlar. Kirli bir camdan bakmak gibidir. Renkler sarıya kayar, kontrast azalır. Gece araç farları etrafında halo ve çizgiler oluşur. Ahşap masa sarımsı-kahve, beyaz bardak kirli sarı görünür.',f:24},
-  {id:'cataract_l',name:'Katarakt (İleri)',emoji:'🌫️',cat:'eye',stats:'20/200-20/800 | Ağır sarı | Yarı kör',desc:'Kalın buzlu camdan dünyaya bakmak gibi. Hareket ve ışık algılanır ama detay yok. Yüzler tanınmaz. Her şey sarı-kahverengi homojen bir lekeye dönüşür. Ameliyat gerektirir.',f:25},
-  {id:'glaucoma_e',name:'Glokom (Erken)',emoji:'🔵',cat:'eye',stats:'20/20 | Çevresel skotom | Fark edilmez',desc:'Optik sinirde başlangıç hasarı. Hasta genellikle fark etmez. Burun tarafındaki görüş alanında küçük karanlık noktalar oluşur. Karanlık adaptasyonunda zorluk başlar. Erken teşhis kritik önem taşır.',f:26},
-  {id:'glaucoma_l',name:'Glokom (İleri)',emoji:'⭕',cat:'eye',stats:'<20° tünel | İlerleyici | Geri dönüşsüz',desc:'Bir tüpün içinden bakmak gibi. Çevresel görüş tamamen kaybolur, sadece merkezdeki küçük bir ada kalır. Eşyalara çarpma, düşme sıklaşır. Tedavi edilmezse tam körlükle sonuçlanır.',f:27},
-  {id:'amd_dry',name:'Makula Dej. (Kuru)',emoji:'🕳️',cat:'eye',stats:'20/40-20/200 | Merkezi kör nokta',desc:'Retina pigment epiteli altında drusen birikir. Görüş alanının tam merkezinde gri-siyah bir leke oluşur. Okurken harfler kaybolur. Birinin yüzüne bakarken burnunu göremezsiniz. Başı çevirip çevresel görüşle bakmak gerekir.',f:28},
-  {id:'amd_wet',name:'Makula Dej. (Yaş)',emoji:'🌊',cat:'eye',stats:'20/200-20/800 | Dalgalı çizgiler | Metamorfopsi',desc:'Koroid damarlarından sıvı sızar. Düz çizgiler dalgalı görünür (metamorfopsi). Merkezde kırmızımsı-siyah deforme bir leke. Nesneler eğri büğrü görünür. Bardağın sapı eğri, masanın kenarı dalgalı algılanır. Acil tedavi gerektirir.',f:29},
-  {id:'diabetic_ret',name:'Diyabetik Retino.',emoji:'🔴',cat:'eye',stats:'Değişken | Uçuşan lekeler | Kanamalar',desc:'Retinada mikroanevrizma ve küçük kanamalar oluşur. Koyu noktalar görüş alanında uçuşur, göz hareketiyle yer değiştirirler. Kan basıncı yükselince görme dalgalanır. Sarı-beyaz eksüda lekeleri de görülebilir.',f:30},
-  {id:'ret_pig',name:'Retinitis Pigm.',emoji:'🔦',cat:'eye',stats:'Gece körlüğü | İlerleyici tünel | Genetik',desc:'Çubuk hücreleri önce ölür — gece görüşü kaybolur. Sonra çevresel görüş daralarak tünel oluşur. Sanki siyah bir silindirin içinden bakıyorsunuz. Merkezi görüş en son kaybedilir. Genetik geçişli, şu an kesin tedavisi yoktur.',f:31},
-  {id:'kerato',name:'Keratokonus',emoji:'💫',cat:'eye',stats:'20/100-20/400 | Çift hayalet | Kuyruklu yıldız',desc:'Kornea konik şekle bürünür ve düzensiz astigmatizma yaratır. Nesneler çift görünür (monoküler diplopi). Işık kaynakları kuyruklu yıldız gibi çizgiler oluşturur. Hiçbir zaman net odak yoktur. Sert lens veya kornea nakli gerekebilir.',f:32},
-  {id:'nystagmus',name:'Nistagmus',emoji:'〰️',cat:'eye',stats:'20/50-20/200 | Sürekli salınım',desc:'Gözler istemsiz olarak sürekli sağa-sola sallanır. Dünya hiç durmuyor — her şey titreşir. Okuma çok yavaş ve yorucu. Nesnelerin net bir kenarı asla yoktur. Sabit bir noktaya odaklanmak çok zordur.',f:33},
-  {id:'blindness',name:'Retina Dekolmanı',emoji:'⬛',cat:'eye',stats:'İlerleyici siyah perde | Acil durum',desc:'Retina yerinden ayrılır. Önce uçuşan cisimler (floater) görülür, sonra görüş alanına siyah bir perde düşer. Perde büyüdükçe görmezliğe doğru gider. Acil cerrahi müdahale gerektirir. Tedavi edilmezse kalıcı körlükle sonuçlanır.',f:67},
-  {id:'presbyopia',name:'Presbiyopi',emoji:'👓',cat:'eye',stats:'Yakın bulanık | Uzak net | 45+ yaş',desc:'Göz merceği yaşla sertleşir ve yakına odaklama zorlaşır. 45 yaşından sonra başlar. Uzaktaki masayı net görürsünüz ama yanındaki telefonu okuyamazsınız. Okuma gözlüğü veya telefonu uzaklaştırma gerekir.',f:68},
-
-  // RENK KÖRLÜĞÜ
-  {id:'protan',name:'Kırmızı Körlük',emoji:'🔴',cat:'color',stats:'Protanopi | L-koni yok | Erkeklerin %1\'i',desc:'Kırmızı renk reseptörü (L-koni) yoktur. Kırmızı nesneler koyu kahve veya siyah görünür. Trafik ışığında kırmızı ile yeşili ayırt etmek imkansızdır. Kırmızı bir elma koyu gri görünür ve fark edilmez.',f:34},
-  {id:'deutan',name:'Yeşil Körlük',emoji:'🟢',cat:'color',stats:'Deuteranopi | M-koni yok | Erkeklerin %6\'sı',desc:'En yaygın renk körlüğü tipi — yeşil reseptör (M-koni) eksiktir. Kırmızı ve yeşil birbirine çok yakın sarı-kahverengi tonunda görünür. Çimenler ve kan portakalı aynı renk. Erkeklerin %6\'sını etkiler.',f:35},
-  {id:'tritan',name:'Mavi-Sarı Körlük',emoji:'🔵',cat:'color',stats:'Tritanopi | S-koni yok | Çok nadir',desc:'Mavi renk reseptörü yoktur — mavi yeşilimsi, sarı pembemsi-gri görünür. Gökyüzü turkuaz algılanır. Çok nadir bir durumdur (~1/30.000). Otozomal dominant geçişlidir.',f:36},
-  {id:'achrom',name:'Tam Renk Körlüğü',emoji:'⬛',cat:'color',stats:'Akromatopsi | Koni yok | Aşırı fotofobi',desc:'Hiçbir koni hücresi çalışmaz — dünya tamamen siyah-beyaz gri tonlamadır. Güneş ışığında gözler dayanılmaz derecede kamaşır (fotofobi). Sadece loş ortamda rahat görebilirler. Keskinlik 20/100-20/200 arasındadır.',f:37},
-
-  // NÖROLOJİK
-  {id:'migraine',name:'Migren Aurası',emoji:'⚡',cat:'neuro',stats:'Sintilantan skotom | 20-60 dk | Zigzag halka',desc:'Göz önünde parlak, titreşen zigzag çizgilerden oluşan bir halka genişleyerek çevreye yayılır. Halkanın arkasında geçici kör nokta kalır. 20-60 dakika sürer. Migren hastalarının %30\'unda görülür. Genellikle baş ağrısından önce gelir.',f:38},
-  {id:'schizo',name:'Şizofreni',emoji:'👻',cat:'neuro',stats:'Karmaşık halüsinasyonlar | Gerçekten ayırt edilemez',desc:'Gerçekte var olmayan figürler, yüzler veya nesneler görülür. Odanın köşesinde biri duruyormuş gibi algılanır, bakınca kaybolur. Geometrik desenler yüzeylere yansıyabilir. Hasta gerçek ile halüsinasyonu ayırt etmekte zorlanır.',f:39},
-  {id:'bonnet',name:'Charles Bonnet',emoji:'🎭',cat:'neuro',stats:'Görme kaybında halüsinasyon | Hasta farkında',desc:'Görme kaybı olan kişilerde beyin boş görsel alanları doldurmaya çalışır. Küçük insanlar, hayvanlar, geometrik desenler halüsinasyon olarak görülür. Hasta bunların gerçek olmadığını bilir ama durduramaz. Tedavisi altta yatan göz hastalığını iyileştirmektir.',f:40},
-  {id:'alice',name:'Alice Sendromu',emoji:'🔮',cat:'neuro',stats:'Boyut bozulması | Mikropsi/Makropsi',desc:'Nesneler olduğundan küçük (mikropsi) veya büyük (makropsi) algılanır. Kendi eliniz dev gibi görünebilir, yürürken kapı küçülebilir. Migren, epilepsi veya Epstein-Barr virüsüyle ilişkili. Çocuklarda daha yaygındır.',f:41},
-  {id:'palinopsia',name:'Palinopsi',emoji:'👁️',cat:'neuro',stats:'Görüntü izi | Saniyeler-dakikalar kalır',desc:'Bir nesneye baktıktan sonra görüntüsü saniyeler hatta dakikalarca iz olarak kalır. Telefonu hareket ettirdiğinizde ekran havada asılı kalır ve yavaşça solar. İlaç yan etkisi, epilepsi veya beyin lezyonlarından kaynaklanabilir.',f:42},
-  {id:'hemianopsia',name:'Hemianopsi',emoji:'✂️',cat:'neuro',stats:'Sağ yarı görüş kaybı | Her iki göz',desc:'Optik traktus veya oksipital lob hasarında görüş alanının sağ (veya sol) yarısı tamamen kaybolur. Her iki gözde de aynı taraf etkilenir. Sağdaki kişiyi göremezsiniz, sürekli çarparsınız. Başı çevirerek telafi etmek gerekir.',f:43},
-  {id:'vertigo',name:'Vertigo',emoji:'🌀',cat:'neuro',stats:'Dünya dönüyor | Vestibüler kökenli | Bulantı',desc:'İç kulak veya vestibüler sinir hasarında dünya sürekli dönüyormuş veya eğiliyormuş gibi algılanır. Baş her hareket ettiğinde görüntü kayar. Nesneler yana doğru sürükleniyormuş gibi görünür. Şiddetli bulantıya neden olur.',f:44},
-  {id:'ketamine',name:'Ketamin Etkisi',emoji:'🫧',cat:'neuro',stats:'Disosiyatif | Fraktal desenler | Eğitim amaçlı',desc:'Yüzeyler canlanıp nefes alır gibi dalgalanır. Renkler soluklaşır. Fraktal geometrik desenler her yüzeye yansır. Tünel görüşü oluşur. Nesneler eriyor ve birbirine dönüşüyor hissi yaratır. Kendini dışarıdan izleme hissi olabilir.',f:69},
-  {id:'acrophobia',name:'Akrofobi',emoji:'😱',cat:'neuro',stats:'Yükseklik paniği | Tünel görüş | Zemin kayması',desc:'Yüksek bir yerden aşağı bakıldığında zemin sallanıyor, uzaklaşıyor veya yükseliyor gibi algılanır. Görüş daralır (tünel). Derinlik algısı bozulur — kenarlar aşağı çekiyormuş hissi yaratır. Denge kaybına neden olabilir.',f:71},
-
-  // GELİŞİM
-  {id:'newborn',name:'Yenidoğan (0-4hf)',emoji:'👶',cat:'dev',stats:'20/400-20/600 | 60° | Renk yok',desc:'Sadece 20-30 cm mesafeyi bulanık görebilir. Ötesi tamamen flu. Renk ayrımı yoktur — sadece yüksek kontrastlı büyük şekiller algılanır. Yüz tanıyamaz. Görüş alanı dar (~60°). Dünya gri, bulanık ve dar bir tünel gibidir.',f:45},
-  {id:'baby3',name:'Bebek 3 Aylık',emoji:'🍼',cat:'dev',stats:'20/200 | Renk başlangıcı | 120°',desc:'Kırmızı-yeşil ayrımı başlar. 30 cm mesafeden yüzleri tanıyabilir. Parlak ve hareketli nesneleri gözleriyle takip edebilir. Görüş alanı genişler (~120°). Ancak detay algısı hâlâ çok zayıftır.',f:46},
-  {id:'baby6',name:'Bebek 6 Aylık',emoji:'🧸',cat:'dev',stats:'20/50-20/100 | Neredeyse yetişkin renk | Binoküler',desc:'Binoküler görme gelişir — derinlik algısı başlar. Renk görüşü neredeyse yetişkin seviyesinde. Küçük detaylar hâlâ bulanık. Tanıdık yüzleri bir oda mesafesinden tanıyabilir.',f:47},
-  {id:'elderly',name:'Yaşlı (80+)',emoji:'👴',cat:'dev',stats:'20/30-20/50 | Sarı mercek | Mavi kaybı',desc:'Göz merceği yaşla birlikte sararır. Mavi ve mor renkler gri algılanır. Kontrast azalır, gece görüşü zorlaşır. Işıklar etrafında halo oluşur. Gece araba kullanmak çok zor hale gelir.',f:48},
-  {id:'myopia',name:'Ağır Miyopi (-10)',emoji:'🔍',cat:'dev',stats:'20/1000+ | 10cm ötesi bulanık',desc:'-10 dioptri düzeltmesiz. Burnunuzun ucundan 10 cm ötesi tamamen bulanıktır. Uzaktaki tabelaları okumak imkansızdır. Sadece ellerinizin önündeki alanı net görebilirsiniz. Düzeltme olmadan günlük yaşam neredeyse imkansız.',f:49},
-
-  // MADDELER
-  {id:'lsd',name:'LSD Etkisi',emoji:'🌈',cat:'sub',stats:'5-HT2A agonist | Nefes alan yüzeyler | Eğitim amaçlı',desc:'Yüzeyler nefes alıyormuş gibi dalgalanır. Renkler imkansız doygunluğa ulaşır. Düz çizgiler kıvrılır. Boş duvarlarda karmaşık desenler oluşur. Sesler renkli görülebilir. Görüntüler iz bırakır. Algı-gerçeklik sınırı kaybolur.',f:50},
-  {id:'alcohol',name:'Alkol (Ağır)',emoji:'🍺',cat:'sub',stats:'Çift görme | Sallanma | Yavaş odak | Eğitim amaçlı',desc:'Dünya yavaşça sallanır. Nesneler çift görünür — birbirine geçmiş iki görüntü. Odaklama gecikir, hareketli nesneleri takip etmek zorlaşır. Işıklar bulanık çizgilere dönüşür. Denge kaybı ve bulantı eşlik eder.',f:51},
-  {id:'tired',name:'Uyku Yoksunluğu',emoji:'😴',cat:'sub',stats:'Aralıklı bulanıklık | Fotofobi | Göz kırpma',desc:'Görüş net ile bulanık arasında dalgalanır. Gözler yanar ve kurur. Işıklar çok parlak gelir. Kısa süreli çift görme atakları olur. Gözleri açık tutmak zorlaşır. Uçuşan cisimler artar. Akomodasyon spazmları yaşanır.',f:52},
-  {id:'vr_sick',name:'VR Hastalığı',emoji:'🥽',cat:'sub',stats:'Hareket gecikmesi | Derinlik hatası | Tünel',desc:'VR\'da baş çevirdiğinizde görüntü birkaç milisaniye gecikir. Bu gecikme beyin-göz uyumsuzluğu yaratır. Derinlik algısı hatalı olur — nesneler olması gerekenden farklı mesafede görünür. Tünel daralması ve bulantı yaygındır.',f:70},
-
-  // EVRİM
-  {id:'trex',name:'T-Rex',emoji:'🦖',cat:'evo',stats:'Tetrakromat+UV | ~280° | Keskinlik ~4.0',desc:'T-Rex\'in gözleri softball büyüklüğündeydi — kara hayvanlarının en büyük gözleri. 55° binoküler alan ile derinlik algısı mükemmeldi. Muhtemelen kuşlar gibi tetrakromat ve UV görüşlüydü. 6 km öteden hareketli avı tespit edebilirdi. Görme keskinliği insanın 4 katıydı.',f:60},
-  {id:'neandertal',name:'Neandertal',emoji:'🧌',cat:'evo',stats:'Trikromat | 180° | Gece görüşü güçlü',desc:'Neandertallerin göz yuvaları modern insandan belirgin şekilde daha büyüktü — daha fazla ışık toplayabiliyorlardı. Gündüz görüşleri insanla neredeyse aynıydı. Ancak alacakaranlık ve gece görüşlerinde önemli avantaja sahiptiler. Avrupa\'nın karanlık kışlarına adaptasyon.',f:61},
-  {id:'future',name:'Gelecek İnsan',emoji:'🚀',cat:'evo',stats:'Tetrakromat olası | AR katmanı | UV',desc:'500 yıl sonra gen terapisi tetrakromasi ve UV görüş sağlayabilir. Artırılmış gerçeklik (AR) gözlükleri görüş alanını 250°\'ye çıkarabilir. Nesnelerin üzerinde dijital bilgi katmanları görünebilir. Miyopi oranları fırlamış olabilir.',f:62},
-
-  // FANTEZİ
-  {id:'alien',name:'Uzaylı',emoji:'👽',cat:'fantasy',stats:'Mavi yıldız evrimli | UV baskın | Psikedelik',desc:'Mavi bir yıldızın gezegeninde evrimleşmiş canlı. Kırmızı ışık çok az olduğu için kırmızı reseptör yok. Mavi ve UV baskın. Kırmızı nesneler siyah görünür. Beyaz objeler göz alıcı mavi-mor ışıma yapar. Tamamen farklı bir renk evreni.',f:63},
-  {id:'robot',name:'Robot (AI)',emoji:'🤖',cat:'fantasy',stats:'Bilgisayar görüşü | Kenar algılama | Izgara',desc:'Yapay zeka görüntüyü matematiksel veri olarak işler. Kenarlar vurgulanır, nesnelerin etrafına yeşil tanımlama kutuları çizilir. Izgara (grid) overlay ile mesafe hesaplanır. Renk değil, kontrast ve şekil önceliklidir.',f:64},
-  {id:'vampire',name:'Vampir',emoji:'🧛',cat:'fantasy',stats:'Gece adapteli | UV | Aşırı fotofobi',desc:'Tam karanlığa adapte gözler — tapetum lucidum ile neredeyse karanlıkta bile görür. UV görüşü kan izlerini ve avını tespit eder. Normal gün ışığında aşırı kamaşma ve ağrı — vampirlerin gündüz çıkmamasının "bilimsel" nedeni.',f:65},
-  {id:'dragon',name:'Ejderha',emoji:'🐉',cat:'fantasy',stats:'Tetrakromat+IR+UV | 300° | Keskinlik 5.0+',desc:'Sürüngen + kuş görüşünün maksimum versiyonu. Termal kızılötesi ile sıcak nesneleri görebilir. UV desenleri algılar. Kartal seviyesinde keskinlik. 300° geniş alan. Sıcak bir içecek termal görüşte kırmızı-sarı parlar. Cam üzerindeki çatlaklar UV ile ortaya çıkar.',f:66},
+  {id:'cataract_e',name:'Katarakt (Erken)',emoji:'🌤️',cat:'eye',stats:'20/30-20/50 | Sararmış | Gece halo',desc:'Göz merceği bulanıklaşmaya başlar. Kirli bir camdan bakmak gibidir. Renkler sarıya kayar, kontrast azalır. Gece araç farları etrafında halo ve çizgiler oluşur.',f:24},
+  {id:'cataract_l',name:'Katarakt (İleri)',emoji:'🌫️',cat:'eye',stats:'20/200-20/800 | Ağır sarı | Yarı kör',desc:'Kalın buzlu camdan dünyaya bakmak gibi. Hareket ve ışık algılanır ama detay yok. Yüzler tanınmaz. Her şey sarı-kahverengi homojen bir lekeye dönüşür.',f:25},
+  {id:'glaucoma_e',name:'Glokom (Erken)',emoji:'🔵',cat:'eye',stats:'20/20 | Çevresel skotom | Fark edilmez',desc:'Optik sinirde başlangıç hasarı. Hasta genellikle fark etmez. Burun tarafındaki görüş alanında küçük karanlık noktalar oluşur.',f:26},
+  {id:'glaucoma_l',name:'Glokom (İleri)',emoji:'⭕',cat:'eye',stats:'<20° tünel | İlerleyici | Geri dönüşsüz',desc:'Bir tüpün içinden bakmak gibi. Çevresel görüş tamamen kaybolur, sadece merkezdeki küçük bir ada kalır.',f:27},
+  {id:'amd_dry',name:'Makula Dej. (Kuru)',emoji:'🕳️',cat:'eye',stats:'20/40-20/200 | Merkezi kör nokta',desc:'Retina pigment epiteli altında drusen birikir. Görüş alanının tam merkezinde gri-siyah bir leke oluşur.',f:28},
+  {id:'amd_wet',name:'Makula Dej. (Yaş)',emoji:'🌊',cat:'eye',stats:'20/200-20/800 | Dalgalı çizgiler | Metamorfopsi',desc:'Koroid damarlarından sıvı sızar. Düz çizgiler dalgalı görünür. Merkezde kırmızımsı-siyah deforme bir leke.',f:29},
+  {id:'diabetic_ret',name:'Diyabetik Retino.',emoji:'🔴',cat:'eye',stats:'Değişken | Uçuşan lekeler | Kanamalar',desc:'Retinada mikroanevrizma ve küçük kanamalar oluşur. Koyu noktalar görüş alanında uçuşur.',f:30},
+  {id:'ret_pig',name:'Retinitis Pigm.',emoji:'🔦',cat:'eye',stats:'Gece körlüğü | İlerleyici tünel | Genetik',desc:'Çubuk hücreleri önce ölür — gece görüşü kaybolur. Sonra çevresel görüş daralarak tünel oluşur.',f:31},
+  {id:'kerato',name:'Keratokonus',emoji:'💫',cat:'eye',stats:'20/100-20/400 | Çift hayalet | Kuyruklu yıldız',desc:'Kornea konik şekle bürünür ve düzensiz astigmatizma yaratır. Nesneler çift görünür.',f:32},
+  {id:'nystagmus',name:'Nistagmus',emoji:'〰️',cat:'eye',stats:'20/50-20/200 | Sürekli salınım',desc:'Gözler istemsiz olarak sürekli sağa-sola sallanır. Dünya hiç durmuyor — her şey titreşir.',f:33},
+  {id:'blindness',name:'Retina Dekolmanı',emoji:'⬛',cat:'eye',stats:'İlerleyici siyah perde | Acil durum',desc:'Retina yerinden ayrılır. Önce uçuşan cisimler görülür, sonra görüş alanına siyah bir perde düşer.',f:67},
+  {id:'presbyopia',name:'Presbiyopi',emoji:'👓',cat:'eye',stats:'Yakın bulanık | Uzak net | 45+ yaş',desc:'Göz merceği yaşla sertleşir ve yakına odaklama zorlaşır. 45 yaşından sonra başlar.',f:68},
+  {id:'protan',name:'Kırmızı Körlük',emoji:'🔴',cat:'color',stats:'Protanopi | L-koni yok | Erkeklerin %1\'i',desc:'Kırmızı renk reseptörü (L-koni) yoktur. Kırmızı nesneler koyu kahve veya siyah görünür.',f:34},
+  {id:'deutan',name:'Yeşil Körlük',emoji:'🟢',cat:'color',stats:'Deuteranopi | M-koni yok | Erkeklerin %6\'sı',desc:'En yaygın renk körlüğü tipi — yeşil reseptör (M-koni) eksiktir.',f:35},
+  {id:'tritan',name:'Mavi-Sarı Körlük',emoji:'🔵',cat:'color',stats:'Tritanopi | S-koni yok | Çok nadir',desc:'Mavi renk reseptörü yoktur — mavi yeşilimsi, sarı pembemsi-gri görünür.',f:36},
+  {id:'achrom',name:'Tam Renk Körlüğü',emoji:'⬛',cat:'color',stats:'Akromatopsi | Koni yok | Aşırı fotofobi',desc:'Hiçbir koni hücresi çalışmaz — dünya tamamen siyah-beyaz gri tonlamadır.',f:37},
+  {id:'migraine',name:'Migren Aurası',emoji:'⚡',cat:'neuro',stats:'Sintilantan skotom | 20-60 dk | Zigzag halka',desc:'Göz önünde parlak, titreşen zigzag çizgilerden oluşan bir halka genişleyerek çevreye yayılır.',f:38},
+  {id:'schizo',name:'Şizofreni',emoji:'👻',cat:'neuro',stats:'Karmaşık halüsinasyonlar | Gerçekten ayırt edilemez',desc:'Gerçekte var olmayan figürler, yüzler veya nesneler görülür.',f:39},
+  {id:'bonnet',name:'Charles Bonnet',emoji:'🎭',cat:'neuro',stats:'Görme kaybında halüsinasyon | Hasta farkında',desc:'Görme kaybı olan kişilerde beyin boş görsel alanları doldurmaya çalışır.',f:40},
+  {id:'alice',name:'Alice Sendromu',emoji:'🔮',cat:'neuro',stats:'Boyut bozulması | Mikropsi/Makropsi',desc:'Nesneler olduğundan küçük (mikropsi) veya büyük (makropsi) algılanır.',f:41},
+  {id:'palinopsia',name:'Palinopsi',emoji:'👁️',cat:'neuro',stats:'Görüntü izi | Saniyeler-dakikalar kalır',desc:'Bir nesneye baktıktan sonra görüntüsü saniyeler hatta dakikalarca iz olarak kalır.',f:42},
+  {id:'hemianopsia',name:'Hemianopsi',emoji:'✂️',cat:'neuro',stats:'Sağ yarı görüş kaybı | Her iki göz',desc:'Optik traktus veya oksipital lob hasarında görüş alanının sağ (veya sol) yarısı tamamen kaybolur.',f:43},
+  {id:'vertigo',name:'Vertigo',emoji:'🌀',cat:'neuro',stats:'Dünya dönüyor | Vestibüler kökenli | Bulantı',desc:'İç kulak veya vestibüler sinir hasarında dünya sürekli dönüyormuş veya eğiliyormuş gibi algılanır.',f:44},
+  {id:'ketamine',name:'Ketamin Etkisi',emoji:'🫧',cat:'neuro',stats:'Disosiyatif | Fraktal desenler | Eğitim amaçlı',desc:'Yüzeyler canlanıp nefes alır gibi dalgalanır. Renkler soluklaşır. Fraktal geometrik desenler her yüzeye yansır.',f:69},
+  {id:'acrophobia',name:'Akrofobi',emoji:'😱',cat:'neuro',stats:'Yükseklik paniği | Tünel görüş | Zemin kayması',desc:'Yüksek bir yerden aşağı bakıldığında zemin sallanıyor, uzaklaşıyor veya yükseliyor gibi algılanır.',f:71},
+  {id:'newborn',name:'Yenidoğan (0-4hf)',emoji:'👶',cat:'dev',stats:'20/400-20/600 | 60° | Renk yok',desc:'Sadece 20-30 cm mesafeyi bulanık görebilir. Ötesi tamamen flu. Renk ayrımı yoktur.',f:45},
+  {id:'baby3',name:'Bebek 3 Aylık',emoji:'🍼',cat:'dev',stats:'20/200 | Renk başlangıcı | 120°',desc:'Kırmızı-yeşil ayrımı başlar. 30 cm mesafeden yüzleri tanıyabilir.',f:46},
+  {id:'baby6',name:'Bebek 6 Aylık',emoji:'🧸',cat:'dev',stats:'20/50-20/100 | Neredeyse yetişkin renk | Binoküler',desc:'Binoküler görme gelişir — derinlik algısı başlar.',f:47},
+  {id:'elderly',name:'Yaşlı (80+)',emoji:'👴',cat:'dev',stats:'20/30-20/50 | Sarı mercek | Mavi kaybı',desc:'Göz merceği yaşla birlikte sararır. Mavi ve mor renkler gri algılanır.',f:48},
+  {id:'myopia',name:'Ağır Miyopi (-10)',emoji:'🔍',cat:'dev',stats:'20/1000+ | 10cm ötesi bulanık',desc:'-10 dioptri düzeltmesiz. Burnunuzun ucundan 10 cm ötesi tamamen bulanıktır.',f:49},
+  {id:'lsd',name:'LSD Etkisi',emoji:'🌈',cat:'sub',stats:'5-HT2A agonist | Nefes alan yüzeyler | Eğitim amaçlı',desc:'Yüzeyler nefes alıyormuş gibi dalgalanır. Renkler imkansız doygunluğa ulaşır.',f:50},
+  {id:'alcohol',name:'Alkol (Ağır)',emoji:'🍺',cat:'sub',stats:'Çift görme | Sallanma | Yavaş odak | Eğitim amaçlı',desc:'Dünya yavaşça sallanır. Nesneler çift görünür.',f:51},
+  {id:'tired',name:'Uyku Yoksunluğu',emoji:'😴',cat:'sub',stats:'Aralıklı bulanıklık | Fotofobi | Göz kırpma',desc:'Görüş net ile bulanık arasında dalgalanır. Gözler yanar ve kurur.',f:52},
+  {id:'vr_sick',name:'VR Hastalığı',emoji:'🥽',cat:'sub',stats:'Hareket gecikmesi | Derinlik hatası | Tünel',desc:'VR\'da baş çevirdiğinizde görüntü birkaç milisaniye gecikir.',f:70},
+  {id:'trex',name:'T-Rex',emoji:'🦖',cat:'evo',stats:'Tetrakromat+UV | ~280° | Keskinlik ~4.0',desc:'T-Rex\'in gözleri softball büyüklüğündeydi. 55° binoküler alan ile derinlik algısı mükemmeldi.',f:60},
+  {id:'neandertal',name:'Neandertal',emoji:'🧌',cat:'evo',stats:'Trikromat | 180° | Gece görüşü güçlü',desc:'Neandertallerin göz yuvaları modern insandan belirgin şekilde daha büyüktü.',f:61},
+  {id:'future',name:'Gelecek İnsan',emoji:'🚀',cat:'evo',stats:'Tetrakromat olası | AR katmanı | UV',desc:'500 yıl sonra gen terapisi tetrakromasi ve UV görüş sağlayabilir.',f:62},
+  {id:'alien',name:'Uzaylı',emoji:'👽',cat:'fantasy',stats:'Mavi yıldız evrimli | UV baskın | Psikedelik',desc:'Mavi bir yıldızın gezegeninde evrimleşmiş canlı. Kırmızı ışık çok az olduğu için kırmızı reseptör yok.',f:63},
+  {id:'robot',name:'Robot (AI)',emoji:'🤖',cat:'fantasy',stats:'Bilgisayar görüşü | Kenar algılama | Izgara',desc:'Yapay zeka görüntüyü matematiksel veri olarak işler. Kenarlar vurgulanır.',f:64},
+  {id:'vampire',name:'Vampir',emoji:'🧛',cat:'fantasy',stats:'Gece adapteli | UV | Aşırı fotofobi',desc:'Tam karanlığa adapte gözler — tapetum lucidum ile neredeyse karanlıkta bile görür.',f:65},
+  {id:'dragon',name:'Ejderha',emoji:'🐉',cat:'fantasy',stats:'Tetrakromat+IR+UV | 300° | Keskinlik 5.0+',desc:'Sürüngen + kuş görüşünün maksimum versiyonu. Termal kızılötesi ile sıcak nesneleri görebilir.',f:66},
 ];
 
 const CATEGORIES=[
-  {id:'all',label:'Tümü'},
-  {id:'ref',label:'Normal'},
-  {id:'pets',label:'Evciller'},
-  {id:'birds',label:'Kuşlar'},
-  {id:'insects',label:'Böcekler'},
-  {id:'sea',label:'Deniz'},
-  {id:'reptiles',label:'Sürüngenler'},
-  {id:'mammals',label:'Memeliler'},
-  {id:'eye',label:'Göz Hast.'},
-  {id:'color',label:'Renk Körlüğü'},
-  {id:'neuro',label:'Nörolojik'},
-  {id:'dev',label:'Gelişim'},
-  {id:'sub',label:'Maddeler'},
-  {id:'evo',label:'Evrim'},
-  {id:'fantasy',label:'Fantezi'},
+  {id:'all',label:'Tümü'},{id:'ref',label:'Normal'},{id:'pets',label:'Evciller'},
+  {id:'birds',label:'Kuşlar'},{id:'insects',label:'Böcekler'},{id:'sea',label:'Deniz'},
+  {id:'reptiles',label:'Sürüngenler'},{id:'mammals',label:'Memeliler'},
+  {id:'eye',label:'Göz Hast.'},{id:'color',label:'Renk Körlüğü'},
+  {id:'neuro',label:'Nörolojik'},{id:'dev',label:'Gelişim'},
+  {id:'sub',label:'Maddeler'},{id:'evo',label:'Evrim'},{id:'fantasy',label:'Fantezi'},
 ];
 
 const VS=`attribute vec2 a_pos;attribute vec2 a_uv;varying vec2 v_uv;void main(){v_uv=a_uv;gl_Position=vec4(a_pos,0,1);}`;
-
 const FS=`
 precision mediump float;
 varying vec2 v_uv;
@@ -230,7 +209,6 @@ uniform int u_filter;
 uniform float u_time;
 uniform vec2 u_res;
 uniform int u_compare;
-
 vec3 rgb2hsv(vec3 c){vec4 K=vec4(0.,-1./3.,2./3.,-1.);vec4 p=mix(vec4(c.bg,K.wz),vec4(c.gb,K.xy),step(c.b,c.g));vec4 q=mix(vec4(p.xyw,c.r),vec4(c.r,p.yzx),step(p.x,c.r));float d=q.x-min(q.w,q.y);return vec3(abs(q.z+(q.w-q.y)/(6.*d+1e-10)),d/(q.x+1e-10),q.x);}
 vec3 hsv2rgb(vec3 c){vec4 K=vec4(1.,2./3.,1./3.,3.);vec3 p=abs(fract(c.xxx+K.xyz)*6.-K.www);return c.z*mix(K.xxx,clamp(p-K.xxx,0.,1.),c.y);}
 vec2 barrel(vec2 uv,float k){vec2 cc=uv-.5;float r=dot(cc,cc);return uv+cc*(k*r);}
@@ -240,7 +218,6 @@ vec3 blur5(vec2 uv,float s){vec3 b=texture2D(u_tex,uv).rgb*.4;b+=texture2D(u_tex
 vec3 blur9(vec2 uv,float s){vec3 b=vec3(0.);float w=0.;for(int x=-2;x<=2;x++)for(int y=-2;y<=2;y++){float fw=1./(1.+float(x*x+y*y));b+=texture2D(u_tex,clamp(uv+vec2(float(x),float(y))*s,0.,1.)).rgb*fw;w+=fw;}return b/w;}
 vec3 blur13(vec2 uv,float s){vec3 b=vec3(0.);float w=0.;for(int x=-3;x<=3;x++)for(int y=-3;y<=3;y++){float fw=1./(1.+float(x*x+y*y));b+=texture2D(u_tex,clamp(uv+vec2(float(x),float(y))*s,0.,1.)).rgb*fw;w+=fw;}return b/w;}
 vec3 dichro(vec3 c){return vec3(.625*c.r+.375*c.g,.7*c.g+.3*c.r,c.b);}
-
 vec3 applyFilter(vec2 uv,vec3 col){
   if(u_filter==0)return col;
   if(u_filter==1){vec2 d=barrel(uv,.25);if(d.x<0.||d.x>1.||d.y<0.||d.y>1.)return vec3(0);col=blur5(d,.009);col=vec3(.625*col.r+.375*col.g,.7*col.g+.3*col.r,.75*col.b+.25*col.g);float gr=lum(col);col=mix(vec3(gr),col,.6);col*=mix(.68,1.,smoothstep(0.,.55,uv.y));return col;}
@@ -316,16 +293,10 @@ vec3 applyFilter(vec2 uv,vec3 col){
   if(u_filter==71){float sw=sin(u_time*.7)*.015;vec2 su=clamp(uv+vec2(sw,0),0.,1.);su.y=clamp(su.y+pow(max(0.,uv.y-.4),2.)*.08,0.,1.);col=texture2D(u_tex,su).rgb;col*=(1.-pow(smoothstep(.22,.45,length(uv-.5)),2.5)*.6);return col;}
   return col;
 }
-
 void main(){
   vec2 uv=v_uv;
   vec3 col=texture2D(u_tex,uv).rgb;
-  if(u_compare==1&&uv.x<.5){
-    gl_FragColor=vec4(col,1.);
-    // divider line
-    if(abs(uv.x-.5)<.003)gl_FragColor=vec4(1.,1.,1.,.8);
-    return;
-  }
+  if(u_compare==1&&uv.x<.5){gl_FragColor=vec4(col,1.);if(abs(uv.x-.5)<.003)gl_FragColor=vec4(1.,1.,1.,.8);return;}
   col=applyFilter(uv,col);
   gl_FragColor=vec4(clamp(col,0.,1.),1.);
   if(u_compare==1&&abs(uv.x-.5)<.003)gl_FragColor=vec4(1.,1.,1.,.8);
@@ -395,7 +366,6 @@ function startLoop(){
   };loop();
 }
 
-// Arka plana gidip dönünce kamerayı yeniden başlat
 document.addEventListener('visibilitychange',()=>{
   if(!document.hidden&&video.srcObject){
     const tracks=video.srcObject.getTracks();
@@ -419,8 +389,6 @@ async function takePhoto(){
   gl.uniform1i(uFilter,currentAnimal.f);gl.uniform1f(uTime,t);gl.uniform2f(uRes,glCanvas.width,glCanvas.height);gl.uniform1i(uCompare,0);
   gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
   lastPhotoUrl=glCanvas.toDataURL('image/jpeg',.92);
-
-  // Freeze frame göster
   const img=new Image();
   img.onload=()=>{
     freezeCtx.drawImage(img,0,0,freezeCanvas.width,freezeCanvas.height);
@@ -428,15 +396,12 @@ async function takePhoto(){
     setTimeout(()=>{freezeCanvas.style.display='none';},1500);
   };
   img.src=lastPhotoUrl;
-
-  // Android Bridge ile MediaStore'a kaydet
   const base64=lastPhotoUrl.split(',')[1];
   const fileName='ThroughEyes_'+currentAnimal.id+'_'+Date.now()+'.jpg';
   if(window.AndroidBridge){
     const result=window.AndroidBridge.saveImageToGallery(base64,fileName);
     if(result==='success'){showToast('📸 Galeriye kaydedildi!');return;}
   }
-  // Web fallback
   const a=document.createElement('a');a.download=fileName;a.href=lastPhotoUrl;a.click();
   showToast('📸 Kaydedildi!');
 }
@@ -463,7 +428,6 @@ async function sharePhoto(){
 }
 
 function toggleCompare(){compareMode=!compareMode;showToast(compareMode?'Karşılaştırma: SOL=İnsan, SAĞ='+currentAnimal.name:'Karşılaştırma kapalı');}
-
 function buildCategories(){const c=document.getElementById('categoryTabs');c.innerHTML='';CATEGORIES.forEach(cat=>{const btn=document.createElement('button');btn.className='cat-tab'+(cat.id===currentCategory?' active':'');btn.textContent=cat.label;btn.onclick=()=>selectCategory(cat.id);c.appendChild(btn);});}
 function buildAnimalGrid(cat){const c=document.getElementById('animalScroll');c.innerHTML='';(cat==='all'?A:A.filter(a=>a.cat===cat)).forEach(a=>{const btn=document.createElement('button');btn.className='animal-btn'+(a.id===currentAnimal.id?' active':'');btn.innerHTML=`<span class="emoji">${a.emoji}</span><span class="name">${a.name}</span>`;btn.onclick=()=>selectAnimal(a);c.appendChild(btn);});}
 function selectCategory(id){currentCategory=id;buildCategories();buildAnimalGrid(id);}
